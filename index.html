@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090a0d">
+  <meta name="description" content="KayısıHub — Mobile Legends oyuncuları için hizmet ve turnuva pazaryeri.">
+  <title>KayısıHub | Oyuncuların Merkezi</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">K</span><span>KAYISI<span class="accent">HUB</span><small>PLAYER MARKETPLACE</small></span></a>
+  <nav class="desktop-nav"><a href="#market">Pazaryeri</a><a href="#news">MLBB Haber</a><a href="#how">Nasıl Çalışır?</a></nav>
+  <div class="top-actions"><button class="btn btn-ghost" id="loginOpen">Giriş</button><button class="btn btn-primary" id="sellOpen">İlan Ver</button><button class="icon-btn hidden" id="accountOpen" aria-label="Hesabım">◎</button></div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> OYUNCULARIN YENİ BULUŞMA NOKTASI</div>
+      <h1>Oyunun için<br><span class="gradient-text">doğru adres.</span></h1>
+      <p>Mobile Legends hizmetlerini keşfet, turnuva lobilerini bul ve oyuncularla güvenli bir şekilde iletişim kur.</p>
+      <div class="hero-cta"><a class="btn btn-primary btn-large" href="#market">Pazaryerini keşfet <b>↗</b></a><button class="btn btn-ghost btn-large" id="heroSell">Hizmetini yayınla</button></div>
+      <div class="hero-note"><span>●</span> İlk sürüm · Mobile Legends odaklı</div>
+    </div>
+    <div class="hero-art" aria-label="KayısıHub oyun temalı görsel">
+      <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+      <div class="art-core"><div class="core-k">K</div><div class="core-label">KAYISI<br>HUB</div></div>
+      <div class="float-card fc-one"><span class="mini-icon">⚔</span><span><b>MLBB Boost</b><small>Hizmet ilanları</small></span></div>
+      <div class="float-card fc-two"><span class="mini-icon">🏆</span><span><b>Turnuva Lobisi</b><small>Oyuncular buluşuyor</small></span></div>
+      <div class="art-caption">PLAY SMART. GROW TOGETHER.</div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="market">
+    <div class="section-head"><div><div class="eyebrow">KEŞFET</div><h2>KayısıHub pazaryeri</h2><p>Aradığın hizmeti seç, ilanları incele.</p></div><span class="live-pill"><i></i> Canlı liste</span></div>
+    <div class="category-row" id="categoryFilters">
+      <button class="filter-chip active" data-category="all">Tümü</button>
+      <button class="filter-chip" data-category="MLBB Boost">⚡ MLBB Boost</button>
+      <button class="filter-chip" data-category="Turnuva Lobisi">🏆 Turnuva Lobisi</button>
+    </div>
+    <div class="search-row"><input id="searchInput" type="search" placeholder="İlan veya hizmet ara..."><button class="btn btn-primary" id="searchBtn">Ara</button></div>
+    <div id="listingGrid" class="listing-grid"><div class="loading-card">İlanlar yükleniyor…</div></div>
+    <p class="subtle center" id="listingMessage"></p>
+  </section>
+
+  <section class="news-section" id="news"><div class="wrap section">
+    <div class="section-head"><div><div class="eyebrow">GÜNCEL</div><h2>MLBB haber merkezi</h2><p>Mobile Legends dünyasından duyurular ve gelişmeler.</p></div></div>
+    <div id="newsGrid" class="news-grid"><article class="news-card"><div class="news-symbol">◈</div><b>Haberler hazırlanıyor</b><p>Yayınlanan haberler burada listelenecek.</p></article></div>
+  </div></section>
+
+  <section class="wrap section" id="how">
+    <div class="section-head"><div><div class="eyebrow">BASİT VE NET</div><h2>Nasıl çalışır?</h2></div></div>
+    <div class="steps">
+      <article class="step"><span>01</span><h3>Keşfet</h3><p>İhtiyacın olan MLBB hizmetini veya turnuva lobisini bul.</p></article>
+      <article class="step"><span>02</span><h3>İletişime geç</h3><p>İlan sahibiyle platformun mesajlaşma alanından konuş.</p></article>
+      <article class="step"><span>03</span><h3>Talebini oluştur</h3><p>Hizmet talebini gönder ve süreci hesabından takip et.</p></article>
+    </div>
+    <div class="notice"><b>Bilgilendirme:</b> İlk sürümde platform üzerinden ödeme/emanet sistemi bulunmaz. Ödeme koruması varmış gibi bir iddia sunulmaz. İşlem koşullarını karşı tarafla netleştirmeden ödeme yapma.</div>
+  </section>
+</main>
+
+<footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#"><span class="brand-mark">K</span><span>KAYISI<span class="accent">HUB</span><small>PLAYER MARKETPLACE</small></span></a><span>© <span id="year"></span> KayısıHub. Oyuncular için geliştiriliyor.</span><span class="footer-status">BETA · V1</span></div></footer>
+
+<div class="modal-backdrop hidden" id="authModal"><section class="modal">
+  <button class="modal-close" data-close="authModal">×</button><div class="eyebrow">KAYISIHUB HESABI</div><h2 id="authTitle">Tekrar hoş geldin.</h2><p class="subtle" id="authHint">Hesabına giriş yap ve pazaryerine katıl.</p>
+  <div class="form-stack"><label>E-posta<input id="authEmail" type="email" autocomplete="email" placeholder="ornek@mail.com"></label><label>Şifre<input id="authPassword" type="password" autocomplete="current-password" placeholder="En az 8 karakter"></label><label id="usernameField" class="hidden">Kullanıcı adı<input id="authUsername" maxlength="24" placeholder="oyuncuadi"></label>
+  <button class="btn btn-primary full" id="authSubmit">Giriş Yap</button><button class="text-button" id="authToggle">Hesabın yok mu? Kayıt ol</button><p class="form-message" id="authMessage"></p></div>
+</section></div>
+
+<div class="modal-backdrop hidden" id="listingModal"><section class="modal modal-wide">
+  <button class="modal-close" data-close="listingModal">×</button><div class="eyebrow">PAZARYERİNE KATIL</div><h2>Yeni ilan oluştur</h2><p class="subtle">İlanın ilk olarak taslak olarak kaydedilir. Yayına alınması için yönetici onayı gerekir.</p>
+  <div class="form-stack"><label>İlan başlığı<input id="listingTitle" maxlength="120" placeholder="Örn. Mythic rank boost hizmeti"></label><label>Kategori<select id="listingCategory"><option value="">Kategori seç</option><option value="ff408af8-58bd-4f3c-8cff-857e7689bc05">MLBB Boost</option><option value="1ca54e21-f1b1-4411-9bca-1ddba489624e">Turnuva Lobisi</option></select></label><label>Açıklama<textarea id="listingDescription" rows="4" maxlength="10000" placeholder="Hizmetin kapsamını, şartlarını ve detaylarını anlat."></textarea></label><label>Fiyat (₺)<input id="listingPrice" type="number" min="0" step="0.01" placeholder="Boş bırakılabilir"></label><button class="btn btn-primary full" id="listingSubmit">Taslak olarak gönder</button><p class="form-message" id="listingMessage"></p></div>
+</section></div>
+
+<div class="modal-backdrop hidden" id="accountModal"><section class="modal modal-wide">
+  <button class="modal-close" data-close="accountModal">×</button><div class="eyebrow">OYUNCU PANELİ</div><h2 id="accountName">Hesabım</h2><p class="subtle" id="accountEmail"></p>
+  <div class="account-tabs"><button class="tab active" data-tab="myListings">İlanlarım</button><button class="tab" data-tab="myRequests">Taleplerim</button><button class="tab" data-tab="myMessages">Mesajlarım</button></div>
+  <div id="accountContent" class="account-content">Yükleniyor…</div><button class="btn btn-ghost full logout" id="logoutBtn">Çıkış yap</button>
+</section></div>
+
+<div class="modal-backdrop hidden" id="detailModal"><section class="modal modal-wide">
+  <button class="modal-close" data-close="detailModal">×</button><div id="detailContent"></div>
+</section></div>
+
+<button class="junior-launch" id="juniorOpen"><span>✦</span><span>Junior İsmail<small>Yardım asistanı</small></span></button>
+<div class="junior-panel hidden" id="juniorPanel"><div class="junior-head"><span>✦ Junior İsmail</span><button id="juniorClose">×</button></div><div class="junior-body" id="juniorBody"><div class="junior-bubble">Selam! KayısıHub'ın ilk sürüm yardım asistanıyım. Üyelik, ilan ve mesajlaşma konusunda yardımcı olabilirim.</div></div><form id="juniorForm"><input id="juniorInput" placeholder="Bir şey sor..." autocomplete="off"><button aria-label="Gönder">➤</button></form><small class="junior-disclaimer">İlk sürüm: sabit yardım yanıtları. Harici yapay zekâ bağlantısı henüz yok.</small></div>
+<div class="toast hidden" id="toast"></div>
+</body>
+</html>
